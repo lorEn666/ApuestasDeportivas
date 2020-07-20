@@ -36,6 +36,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main extends JFrame {
 
@@ -105,7 +107,7 @@ public class Main extends JFrame {
 		menuBarra.add(mnPrograma);
 
 		mntmSalir = new JMenuItem("Salir");
-		mntmSalir.addMouseListener(new MntmSalirMouseListener());
+		mntmSalir.addActionListener(new MntmSalirActionListener());
 		mntmSalir.setHorizontalAlignment(SwingConstants.CENTER);
 		mnPrograma.add(mntmSalir);
 		contentPane = new JPanel();
@@ -294,13 +296,6 @@ public class Main extends JFrame {
 		btnComprobar.setEnabled(false);
 	}
 
-	private class MntmSalirMouseListener extends MouseAdapter {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			System.exit(0);
-		}
-	}
-
 	private void compruebaElementosDiferentesComboBox() {
 		if (textEquipoLocal.getSelectedItem() == textEquipoVisitante.getSelectedItem()) {
 			textNombre.setEditable(false);
@@ -402,6 +397,11 @@ public class Main extends JFrame {
 				lblResultadoVisitante.setText(String.valueOf(resultado.nextInt(6)));
 				actualizaTextAreaGanadores();
 			}
+		}
+	}
+	private class MntmSalirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
 		}
 	}
 
